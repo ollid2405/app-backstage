@@ -57,7 +57,38 @@
                           </includes>
                           <followSymlinks>false</followSymlinks>
                       </fileset>
+                      <fileset>
+                          <directory>node</directory>
+                          <includes>
+                              <include>**</include>
+                          </includes>
+                          <followSymlinks>false</followSymlinks>
+                      </fileset>
+                      <fileset>
+                          <directory>src</directory>
+                          <includes>
+                              <include>**</include>
+                          </includes>
+                          <followSymlinks>false</followSymlinks>
+                      </fileset>
                   </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.3.2</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>bash</executable>
+                    <commandlineArgs>deploy.sh</commandlineArgs>
                 </configuration>
             </plugin>
             <plugin>
