@@ -49,3 +49,10 @@ site
 
 # vscode database functionality support files
 *.session.sql
+
+# mvn
+target/
+node/
+
+# intellij
+.idea

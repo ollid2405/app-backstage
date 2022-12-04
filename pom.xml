@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.ollidev.app</groupId>
+    <artifactId>backstage</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                  <filesets>
+                    <fileset>
+                      <directory>dist-types</directory>
+                        <includes>
+                            <include>**</include>
+                        </includes>
+                        <followSymlinks>false</followSymlinks>
+                    </fileset>
+                      <fileset>
+                          <directory>node_modules</directory>
+                          <includes>
+                              <include>**</include>
+                          </includes>
+                          <followSymlinks>false</followSymlinks>
+                      </fileset>
+                      <fileset>
+                          <directory>packages/app/node_modules</directory>
+                          <includes>
+                              <include>**</include>
+                          </includes>
+                          <followSymlinks>false</followSymlinks>
+                      </fileset>
+                      <fileset>
+                          <directory>packages/app/dist</directory>
+                          <includes>
+                              <include>**</include>
+                          </includes>
+                          <followSymlinks>false</followSymlinks>
+                      </fileset>
+                      <fileset>
+                          <directory>packages/backend/node_modules</directory>
+                          <includes>
+                              <include>**</include>
+                          </includes>
+                          <followSymlinks>false</followSymlinks>
+                      </fileset>
+                      <fileset>
+                          <directory>packages/backend/dist</directory>
+                          <includes>
+                              <include>**</include>
+                          </includes>
+                          <followSymlinks>false</followSymlinks>
+                      </fileset>
+                  </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.12.1</version>
+
+                <executions>
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-yarn</goal>
+                        </goals>
+                        <configuration>
+                            <!-- See https://nodejs.org/en/download/ for latest node and npm (lts) versions -->
+                            <nodeVersion>v18.12.1</nodeVersion>
+                            <yarnVersion>v1.22.19</yarnVersion>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>yarn install</id>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>yarn tsc</id>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>tsc</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>yarn build:backend</id>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>build:backend</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
